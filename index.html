@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JP - Engineering Student Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* CSS STYLES GO HERE */
+
+      /* Basic Setup */
+      :root {
+        --primary-yellow: #ffc82c;
+        --primary-red: #f84f39;
+        --primary-cyan: #31e6e0;
+        --dark-gray: #2f2f2f;
+        --light-gray: #f4f4f4;
+        --text-color: #5f5f5f;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #ffffff;
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--light-gray);
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1000;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo-circle {
+        width: 30px;
+        height: 30px;
+        background-color: var(--primary-yellow);
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .logo-text h3 {
+        font-size: 1.2rem;
+        color: var(--dark-gray);
+        margin: 0;
+      }
+
+      .logo-text p {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+
+      nav {
+        display: none; /* Hidden on mobile by default, shown on larger screens */
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        margin-left: 1.5rem;
+        font-weight: 500;
+      }
+
+      nav a.active {
+        color: var(--dark-gray);
+        font-weight: 600;
+      }
+
+      /* Main Content & Page Sections */
+      main {
+        padding: 2rem 1.5rem;
+      }
+
+      .page {
+        display: none; /* Hide all pages by default */
+      }
+
+      .page.active {
+        display: block; /* Show only the active page */
+      }
+
+      /* Home Section */
+      .home-content {
+        text-align: center;
+      }
+
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+      }
+
+      .home-content h1 {
+        font-size: 3rem;
+        color: var(--dark-gray);
+      }
+
+      .home-content h2 {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+      }
+
+      .home-content p {
+        max-width: 600px;
+        margin: 0 auto 2rem auto;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .cta-btn {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        transition: transform 0.3s ease;
+      }
+
+      .cta-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .cta-btn.resume {
+        background-color: var(--primary-yellow);
+      }
+      .cta-btn.projects {
+        background-color: var(--primary-red);
+      }
+      .cta-btn.contact {
+        background-color: var(--primary-cyan);
+      }
+
+      /* Resume, Projects, Contact Headers */
+      #resume h2,
+      #projects h2,
+      #contact h2 {
+        color: var(--dark-gray);
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 3px solid var(--primary-yellow);
+        display: inline-block;
+        padding-bottom: 0.5rem;
+      }
+
+      /* Resume Section */
+      .resume-section {
+        margin-bottom: 2.5rem;
+      }
+
+      .resume-section h3 {
+        color: var(--dark-gray);
+        margin-bottom: 1rem;
+      }
+
+      .resume-item {
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: 2px solid var(--light-gray);
+      }
+      .resume-item h4 {
+        font-size: 0.9rem;
+        font-weight: 400;
+      }
+      .resume-item h5 {
+        font-size: 1.1rem;
+        color: var(--dark-gray);
+        margin-bottom: 0.5rem;
+      }
+
+      .resume-section ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      .resume-section ul li {
+        background: url('data:image/svg+xml;charset=US-ASCII,<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7" stroke="%23ffc82c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+          no-repeat left center;
+        padding-left: 25px;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Projects Section */
+      .subtitle {
+        margin-top: -1.5rem;
+        margin-bottom: 2rem;
+      }
+      .project-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .project-card {
+        background: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .project-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .project-card p {
+        padding: 1rem;
+        font-weight: 600;
+        color: var(--dark-gray);
+      }
+
+      /* Contact Section */
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .form-row {
+        display: flex;
+        gap: 1rem;
+      }
+      .form-row input {
+        width: 50%;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: "Poppins", sans-serif;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: 2px solid var(--primary-yellow);
+        border-color: transparent;
+      }
+      .submit-btn {
+        padding: 1rem;
+        background-color: var(--primary-yellow);
+        color: var(--dark-gray);
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .submit-btn:hover {
+        background-color: #e6b321;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark-gray);
+        color: white;
+        padding: 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      footer h4 {
+        font-weight: 600;
+      }
+      footer p,
+      footer a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-social a {
+        margin: 0 0.5rem;
+      }
+
+      /* Media Queries for larger screens */
+      @media (min-width: 768px) {
+        nav {
+          display: block; /* Show nav on tablets and desktops */
+        }
+        .project-grid {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .project-card {
+          width: calc(50% - 1rem);
+        }
+        .contact-form {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        footer {
+          flex-direction: row;
+          justify-content: space-around;
+          text-align: left;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .project-card {
+          width: calc(33.333% - 1.5rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <span class="logo-circle"></span>
+        <div class="logo-text">
+          <h3>J P</h3>
+          <p>/Engineering Student</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#home" class="nav-link active">Resume</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="page active">
+        <div class="home-content">
+          <img
+            src="Images/jyothi.jpg"
+            alt="Jyothi Prasad J"
+            class="profile-pic"
+          />
+          <h1>Hello</h1>
+          <h2>About Jyothi Prasad J</h2>
+          <p>
+            Computer Science and Engineering (CSE) blends computing processes,
+            engineering, algorithms, and hardware-software integration. It
+            covers AI, cybersecurity, and data science, shaping innovative tech
+            solutions. CSE drives automation, data science, and intelligent
+            systems.
+          </p>
+          <div class="cta-buttons">
+            <a href="#resume" class="cta-btn resume">Resume</a>
+            <a href="#projects" class="cta-btn projects">Projects</a>
+            <a href="#contact" class="cta-btn contact">Contact</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="resume" class="page">
+        <h2>Resume</h2>
+        <div class="resume-section">
+          <h3>Work Experience</h3>
+          <p>No work experience yet. Ready to learn and contribute!</p>
+        </div>
+        <div class="resume-section">
+          <h3>Education</h3>
+          <div class="resume-item">
+            <h4>2023 - 2027</h4>
+            <h5>BTech in Computer Science and Engineering</h5>
+            <p>
+              Currently studying advanced concepts in computer science,
+              algorithms, data structures, and network security.
+            </p>
+          </div>
+          <div class="resume-item">
+            <h4>2021 - 2023</h4>
+            <h5>Intermediate</h5>
+            <p>
+              Acquired in-depth knowledge of science and mathematics, and
+              computer networks.
+            </p>
+          </div>
+        </div>
+        <div class="resume-section">
+          <h3>Skills & Expertise</h3>
+          <ul>
+            <li>
+              Proficient in Java, Python, C++, SQL, and Full Stack Development.
+            </li>
+            <li>
+              Expertise in mobile app development, system architecture, and
+              network security.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="projects" class="page">
+        <h2>Projects</h2>
+        <p class="subtitle">Computer Science and Engineering</p>
+        <div class="project-grid">
+          <div class="project-card">
+            <img src="Images/auto.jpg" alt="AI and Automation Project" />
+            <p>AI and Automation</p>
+          </div>
+          <div class="project-card">
+            <img src="Images/cyber.jpg" alt="Cybersecurity Solutions Project" />
+            <p>Cybersecurity Solutions</p>
+          </div>
+          <div class="project-card">
+            <img src="Images/cloud.jpg" alt="Cloud Computing Project" />
+            <p>Cloud Computing</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="page">
+        <h2>Contact</h2>
+        <p class="subtitle">Get in touch with me!</p>
+        <form action="#" method="POST" class="contact-form">
+          <div class="form-row">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name *"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name *"
+              required
+            />
+          </div>
+          <input type="email" name="email" placeholder="Email *" required />
+          <input type="text" name="subject" placeholder="Subject" />
+          <textarea name="message" rows="5" placeholder="Message"></textarea>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-contact">
+        <h4>Phone</h4>
+        <p>123-456-7890</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Email</h4>
+        <p>jp9829132@gmail.com</p>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Me</h4>
+        <a
+          href="https://www.linkedin.com/in/jyothi-prasad-7248192bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          >LinkedIn</a
+        >
+        <a href="https://www.facebook.com/share/1JyNEhHFNQ/">Facebook</a>
+      </div>
+    </footer>
+
+    <script>
+      // JAVASCRIPT LOGIC GOES HERE
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all navigation links
+        const navLinks = document.querySelectorAll(".nav-link, .cta-btn");
+        const pages = document.querySelectorAll(".page");
+        const headerLinks = document.querySelectorAll("header .nav-link");
+
+        function changePage(targetId) {
+          // Hide all pages
+          pages.forEach(page => {
+            page.classList.remove("active");
+          });
+
+          // Show the target page
+          const targetPage = document.querySelector(targetId);
+          if (targetPage) {
+            targetPage.classList.add("active");
+          }
+
+          // Update active state for header navigation
+          headerLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === targetId) {
+              link.classList.add("active");
+            }
+          });
+
+          // Scroll to the top of the page on navigation
+          window.scrollTo(0, 0);
+        }
+
+        navLinks.forEach(link => {
+          link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const targetId = this.getAttribute("href");
+            changePage(targetId);
+          });
+        });
+
+        // Initially, show the home page
+        changePage("#home");
+      });
+    </script>
+  </body>
+</html>
